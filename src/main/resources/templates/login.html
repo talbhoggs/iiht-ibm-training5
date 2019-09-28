@@ -8,6 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css} " />
+<link rel="stylesheet"
+	th:href="@{/webjars/font-awesome/5.10.1/css/all.css}" />
 <style>
 /* Custom page CSS
 -------------------------------------------------- */
@@ -27,6 +29,25 @@ main>.container {
 
 code {
 	font-size: 80%;
+}
+
+.input-icons i {
+	position: absolute;
+}
+
+.input-icons {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.icon {
+	padding: 10px;
+	min-width: 40px;
+}
+
+.input-field {
+	width: 100%;
+	padding: 10px 10px 13px 35px;
 }
 </style>
 </head>
@@ -54,29 +75,27 @@ code {
 					<div class="form-group row">
 						<label for="username" class="col-sm-3 col-form-label">Username:
 						</label>
-						<div class="col-sm-9">
-							<input type="text" class="form-control" id="username"
+						<div class="col-sm-9 input-icons">
+							<i class="far fa-user icon"></i></i><input type="text"
+								class="form-control input-field" id="username"
 								placeholder="username">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="password" class="col-sm-3 col-form-label">Password:</label>
-						<div class="col-sm-9">
-							<input type="password" class="form-control" id="password"
+						<div class="col-sm-9 input-icons">
+							<i class="fas fa-unlock-alt icon"></i><input type="password"
+								class="form-control input-field" id="password"
 								placeholder="Password">
 						</div>
 					</div>
 					<div class="form-group">
-
-
-						<div class="d-inline">
-							<button type="submit" class="btn btn-primary">Submit</button>
+						<div class="float-left">
+							<button type="submit" class="btn btn-primary">Register</button>
 						</div>
-						<div class="d-inline">
-							<button type="submit" class="btn btn-primary">Reset</button>
+						<div class="float-right">
+							<button type="submit" class="btn btn-link"><i class="fas fa-redo-alt"></i> Reset</button>
 						</div>
-
-
 					</div>
 				</form>
 			</div>
