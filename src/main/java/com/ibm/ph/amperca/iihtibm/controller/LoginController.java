@@ -15,7 +15,11 @@ public class LoginController {
     
     @GetMapping("/signup")
     public String showSignUpForm(User user) {
-        return "login";
+        return "signup";
     }
 
+    @GetMapping("/login")
+    public String showLoginForm(User user) {
+        return "login";
+    }
 }
