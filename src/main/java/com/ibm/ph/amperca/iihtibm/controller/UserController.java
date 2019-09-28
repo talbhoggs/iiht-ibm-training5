@@ -1,5 +1,7 @@
 package com.ibm.ph.amperca.iihtibm.controller;
 
-public class UserController {
+import org.springframework.stereotype.Controller;
 
+@Controller
+public class UserController {
 }
