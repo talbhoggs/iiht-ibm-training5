@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head class="h-100">
 <meta charset="utf-8">
 <meta name="viewport"
@@ -17,7 +18,6 @@
 /* Custom page CSS
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
-
 .footer {
 	background-color: #f5f5f5;
 }
@@ -61,6 +61,13 @@ code {
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
+			<div class="navbar-collapse collapse w-100 order-3 dual-collapse2"
+				sec:authorize="isAnonymous()">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link" th:href="@{/about}">About</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
+				</ul>
+			</div>
 		</nav>
 	</header>
 	<main role="main" class="flex-shrink-0">
@@ -71,13 +78,15 @@ code {
 
 			<div class="col-5">
 				<h4 class="mt-5">Sign up</h4>
-				<form th:action="@{/signup/submit}" th:object="${user}" method="post">
+				<form th:action="@{/signup/submit}" th:object="${user}"
+					method="post">
 					<div class="form-group row">
 						<label for="name" class="col-sm-3 col-form-label">Name: </label>
 						<div class="col-sm-9 input-icons">
 							<i class="fas fa-user icon"></i><input type="text"
-								class="form-control input-field" id="name" th:field="*{name}"/>
-								<span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+								class="form-control input-field" id="name" th:field="*{name}" />
+							<span class="text-danger" th:if="${#fields.hasErrors('name')}"
+								th:errors="*{name}"></span>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -86,7 +95,8 @@ code {
 						<div class="col-sm-9 input-icons">
 							<i class="fas fa-envelope icon"></i><input type="text"
 								class="form-control input-field" id="email" th:field="*{email}"></input>
-								<span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+							<span class="text-danger" th:if="${#fields.hasErrors('email')}"
+								th:errors="*{email}"></span>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -94,21 +104,21 @@ code {
 						</label>
 						<div class="col-sm-9 input-icons">
 							<i class="far fa-user icon"></i><input type="text"
-								class="form-control input-field" id="userName" th:field="*{userName}"></input>
-								<span class="text-danger" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
+								class="form-control input-field" id="userName"
+								th:field="*{userName}"></input> <span class="text-danger"
+								th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="password" class="col-sm-3 col-form-label">Password:</label>
 						<div class="col-sm-9 input-icons">
 							<i class="fas fa-unlock-alt icon"></i><input type="password"
-								class="form-control input-field" id="password" th:field="*{password}" />
-								<span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+								class="form-control input-field" id="password"
+								th:field="*{password}" /> <span class="text-danger"
+								th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
 						</div>
 					</div>
 					<div class="form-group">
-
-
 						<div class="float-left">
 							<button type="submit" class="btn btn-primary">Register</button>
 						</div>
@@ -117,8 +127,6 @@ code {
 								<i class="fas fa-redo-alt"></i> Reset
 							</button>
 						</div>
-
-
 					</div>
 				</form>
 			</div>

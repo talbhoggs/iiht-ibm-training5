@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head class="h-100">
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Login Page</title>
+<title>Main Page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css} " />
@@ -14,7 +15,6 @@
 /* Custom page CSS
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
-
 .footer {
 	background-color: #f5f5f5;
 }
@@ -58,6 +58,12 @@ code {
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
+			<div class="navbar-collapse collapse w-100 order-3 dual-collapse2" sec:authorize="isAnonymous()">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link" th:href="@{/about}">About</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/signup}">Sign Up</a></li>
+				</ul>
+			</div>
 		</nav>
 	</header>
 	<main role="main" class="flex-shrink-0">
@@ -68,13 +74,13 @@ code {
 
 			<div class="col-5">
 				<h4 class="mt-5">Login</h4>
-				<form>
+				<form th:action="@{/login/submit}" method="post">
 					<div class="form-group row">
 						<label for="username" class="col-sm-3 col-form-label">Username:
 						</label>
 						<div class="col-sm-9 input-icons">
 							<i class="far fa-user icon"></i></i><input type="text"
-								class="form-control input-field" id="username"
+								class="form-control input-field" id="username" name="username"
 								placeholder="">
 						</div>
 					</div>
@@ -82,8 +88,18 @@ code {
 						<label for="password" class="col-sm-3 col-form-label">Password:</label>
 						<div class="col-sm-9 input-icons">
 							<i class="fas fa-unlock-alt icon"></i><input type="password"
-								class="form-control input-field" id="password"
+								class="form-control input-field" id="password" name="password"
 								placeholder="">
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-12 d-flex justify-content-center">
+							<span class="text-danger" th:if="${param.error}"> Email or
+								Password invalid, please verify </span>
+						</div>
+						<div class="col-sm-12 d-flex justify-content-center">
+							<span class="text-danger" th:if="${param.logout}"> Logout
+								Successfully </span>
 						</div>
 					</div>
 					<div class="form-group">
@@ -96,6 +112,7 @@ code {
 							</button>
 						</div>
 					</div>
+
 				</form>
 			</div>
 		</div>
