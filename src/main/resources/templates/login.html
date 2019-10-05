@@ -58,10 +58,12 @@ code {
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="navbar-collapse collapse w-100 order-3 dual-collapse2" sec:authorize="isAnonymous()">
+			<div class="navbar-collapse collapse w-100 order-3 dual-collapse2"
+				sec:authorize="isAnonymous()">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link" th:href="@{/about}">About</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/signup}">Sign Up</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/signup}">Sign
+							Up</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -101,6 +103,13 @@ code {
 							<span class="text-danger" th:if="${param.logout}"> Logout
 								Successfully </span>
 						</div>
+						<div class="col-sm-12 d-flex justify-content-center">
+							<span class="text-danger" th:if="${param.accountUpdate}">
+								Your Account has been updated Successfully. <br />Please login
+								to see the changes.
+							</span>
+						</div>
+
 					</div>
 					<div class="form-group">
 						<div class="float-left">

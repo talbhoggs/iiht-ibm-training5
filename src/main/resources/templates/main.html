@@ -65,7 +65,11 @@ code {
 					<li class="nav-item"><a class="nav-link" href="#">Welcome
 							<span sec:authentication="name"></span>
 					</a></li>
-					<li sec:authorize="hasAuthority('ADMIN')" class="nav-item"><a class="nav-link" th:href="@{/admin/main}">Admin</a></li>
+					<li sec:authorize="hasAuthority('ADMIN')" class="nav-item"><a
+						class="nav-link" th:href="@{/admin/main}">Admin</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/accountupdate}">Account Update</a></li>
+
 					<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
 				</ul>
 			</div>
