@@ -26,12 +26,15 @@ public class LoginController {
   @Autowired
   private SecurityService securityService;
 
+  @GetMapping("/")
+  public String index(Model model) {
+    User user = new User();
+    model.addAttribute("user", user);
+    return "redirect:/about";
+  }
+
   @GetMapping("/login")
   public String showLoginForm(Model model) {
-    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-    System.out.println("++++ show login form");
-
     User user = new User();
     model.addAttribute("user", user);
     return "login";
@@ -39,15 +42,19 @@ public class LoginController {
 
   @PostMapping("/login/submit")
   public String submitSignUpForm(@RequestParam("username") String username,
-      @RequestParam("password") String password, HttpSession session, ModelMap modelMap) {
+      @RequestParam("password") String password, @RequestParam("captcha") String captcha,
+      HttpServletRequest request, ModelMap modelMap) {
 
     if (username.trim().isEmpty() || password.trim().isEmpty()) {
       return "redirect:/login?error=true";
     }
 
-    boolean isAuthenticated = securityService.authenticate(username, password);
+    if (!captcha
+        .equalsIgnoreCase((String) request.getSession().getAttribute("captchValueSession"))) {
+      return "redirect:/login?captchError=true";
+    }
 
-    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    boolean isAuthenticated = securityService.authenticate(username, password);
 
     if (isAuthenticated) {
       return "redirect:/main";

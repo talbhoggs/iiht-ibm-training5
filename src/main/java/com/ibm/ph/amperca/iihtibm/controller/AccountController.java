@@ -1,6 +1,7 @@
 package com.ibm.ph.amperca.iihtibm.controller;
 
 import java.util.HashSet;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -38,11 +39,16 @@ public class AccountController {
   }
 
   @PostMapping("/signup/submit")
-  public String submitSignUpForm(@ModelAttribute("user") @Valid User user, BindingResult result,
-      Model model) {
+  public String submitSignUpForm(HttpServletRequest request,
+      @ModelAttribute("user") @Valid User user, BindingResult result, Model model) {
 
     if (result.hasErrors()) {
       return "signup";
+    }
+
+    if (!user.getCaptcha()
+        .equalsIgnoreCase((String) request.getSession().getAttribute("captchValueSession"))) {
+      return "redirect:/signup?captchError=true";
     }
 
     Role userRole = roleRepository.findByRoleName("USER");
@@ -66,11 +72,16 @@ public class AccountController {
   }
 
   @PostMapping("/accountupdate/submit")
-  public String showAccountUpdateForm(@ModelAttribute("user") @Valid User user,
-      BindingResult result, Model model) {
+  public String showAccountUpdateForm(HttpServletRequest request,
+      @ModelAttribute("user") @Valid User user, BindingResult result, Model model) {
 
     if (result.hasErrors()) {
       return "accountupdate";
+    }
+
+    if (!user.getCaptcha()
+        .equalsIgnoreCase((String) request.getSession().getAttribute("captchValueSession"))) {
+      return "redirect:/accountupdate?captchError=true";
     }
 
     userService.updateUser(user);

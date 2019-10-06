@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
@@ -39,6 +40,17 @@ public class User {
   @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
       inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles;
+
+  @Transient
+  private String captcha;
+
+  public String getCaptcha() {
+    return captcha;
+  }
+
+  public void setCaptcha(String captcha) {
+    this.captcha = captcha;
+  }
 
   public Set<Role> getRoles() {
     return roles;

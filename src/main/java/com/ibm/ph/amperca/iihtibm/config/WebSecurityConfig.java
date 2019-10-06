@@ -24,6 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   public void configure(HttpSecurity http) throws Exception {
     http.authorizeRequests().antMatchers("/login").permitAll().antMatchers("/about").permitAll()
         .antMatchers("/logout").permitAll().antMatchers("/signup").permitAll()
+        .antMatchers("/captcha").permitAll()
         .antMatchers("/login/**").permitAll().antMatchers("/signup/**").permitAll()
         .antMatchers("/h2-console/**").permitAll().antMatchers("/main")
         .hasAnyAuthority("USER", "ADMIN").antMatchers("/accountupdate")
