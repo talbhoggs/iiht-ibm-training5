@@ -45,9 +45,26 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.201-b09, mixed mode)
   git clone https://github.com/talbhoggs/iiht-ibm-training5.git
 ```
 2. In the root folder in step 1 run 
+
+Option 1:
 ```
   mvn spring-boot-run
 ```
+
+
+Option 2:
+
+Run:
+```
+  mvn package
+```
+
+```
+cd target
+
+java -jar iihtibm-0.0.1-SNAPSHOT.jar  
+```
+
 
 3. Run this by opening your favorite web browser.
 
