@@ -26,6 +26,13 @@ public class LoginController {
   @Autowired
   private SecurityService securityService;
 
+  @GetMapping("/")
+  public String index(Model model) {
+    User user = new User();
+    model.addAttribute("user", user);
+    return "redirect:/about";
+  }
+
   @GetMapping("/login")
   public String showLoginForm(Model model) {
     User user = new User();
