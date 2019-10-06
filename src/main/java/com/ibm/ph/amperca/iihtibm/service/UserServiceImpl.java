@@ -44,4 +44,15 @@ public class UserServiceImpl implements UserService {
     return userRepository.findByUserName(name);
   }
 
+  @Override
+  public User findByUserId(String id) {
+    return userRepository.findById(Long.valueOf(id)).get();
+  }
+
+  @Override
+  public User updateUser(User user) {
+    user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+    return userRepository.save(user);
+  }
+
 }
